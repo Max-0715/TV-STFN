@@ -1,8 +1,11 @@
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import torch
 import numpy as np
 import random
-from model import TetraViewNet
-from dataset import TetraViewDataset, tetra_view_collate
+from src.model import TetraViewNet
+from src.dataset import TetraViewDataset, tetra_view_collate
 from torch.utils.data import DataLoader
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

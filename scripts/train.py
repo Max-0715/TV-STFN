@@ -1,3 +1,6 @@
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import os
 import random
 import torch
@@ -10,9 +13,9 @@ from scipy.stats import pearsonr, spearmanr
 import numpy as np
 
 # Import our components
-from dataset import TetraViewDataset, tetra_view_collate
-from model import TetraViewNet
-from loss import CompositeLoss
+from src.dataset import TetraViewDataset, tetra_view_collate
+from src.model import TetraViewNet
+from src.loss import CompositeLoss
 
 # Configuration
 BATCH_SIZE = 32
