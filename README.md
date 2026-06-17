@@ -1,8 +1,9 @@
 # TV-STFN: Tetra-View Spatio-Temporal Fusion Network
 
-![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.6.0-orange.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-orange.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20733474.svg)](https://doi.org/10.5281/zenodo.20733474)
 
 ## Overview
 
@@ -17,61 +18,80 @@ The model integrates **Multi-Instance Learning (MIL)** with attention mechanisms
 
 ## Project Structure
 
-| File | Description |
-|------|-------------|
-| `model.py` | `TetraViewNet` architecture with residual MLP fusion blocks |
-| `encoders.py` | Four encoder branches (DynamicConformer, Semantic, GraphTopology, Physicochemical) |
-| `dataset.py` | Data loading, 3D conformer generation, and feature extraction |
-| `loss.py` | `CompositeLoss` combining MSE, ranking loss, and classification objectives |
-| `train.py` | Main training script with early stopping and evaluation metrics |
-| `predict.py` | Standalone prediction on new molecules |
-| `preprocess_fast.py` | Fast data preprocessing pipeline |
-| `preprocess_smart.py` | Smart preprocessing with caching |
-| `preprocess_tetraview.py` | Full TetraView data preparation |
-| `requirements.txt` | Python dependencies |
+```
+TV-STFN/
+├── src/                    # Core model
+│   ├── model.py            # TetraViewNet architecture
+│   ├── encoders.py         # Four encoder branches
+│   ├── loss.py             # CompositeLoss
+│   └── dataset.py          # Data loading & feature extraction
+├── scripts/                # Run scripts
+│   ├── train.py            # Training
+│   ├── predict.py          # Prediction
+│   └── preprocess.py       # Data preprocessing
+├── data/                   # Dataset placeholder
+├── requirements.txt        # pip dependencies
+├── environment.yml         # Conda environment
+└── README.md
+```
 
 ## Installation
 
+**Using Conda:**
+```bash
+conda env create -f environment.yml
+conda activate tv-stfn
+```
+
+**Using pip:**
 ```bash
 pip install -r requirements.txt
 ```
 
 **Key Dependencies:**
-- PyTorch 2.6.0
-- PyTorch Geometric
-- RDKit
-- pandas, NumPy, SciPy, scikit-learn
+- Python 3.10+
+- PyTorch 2.0+, PyTorch Geometric
+- RDKit, NumPy, pandas, scikit-learn
 
 ## Dataset
 
-The model uses the **CycPeptMPDB** dataset. Place `CycPeptMPDB_Peptide_PAMPA.csv` in the project root directory.
+The model uses the **CycPeptMPDB** dataset. Place `CycPeptMPDB_Peptide_PAMPA.csv` in the `data/` directory.
+
+> Li J., Yanagisawa K., Sugita M., Fujie T., Ohue M., and Akiyama Y. CycPeptMPDB: A Comprehensive Database of Membrane Permeability of Cyclic Peptides. *J. Chem. Inf. Model.*, 2023, 63(7): 2240–2250. [DOI: 10.1021/acs.jcim.2c01573](https://doi.org/10.1021/acs.jcim.2c01573)
 
 ## Usage
 
 ### Training
 
 ```bash
-python train.py
+python scripts/train.py
 ```
-
-This will preprocess the data, train for 100 epochs with early stopping, and save the best model to `best_tetraview_model.pth`.
 
 ### Prediction
 
 ```bash
-python predict.py
+python scripts/predict.py
 ```
 
-### Hyperparameter Search
+### Preprocessing
 
 ```bash
-python auto_search_tvstfn_5fold.py
+python scripts/preprocess.py
 ```
 
-## Model Weights
+## Data and Software Availability
 
-Pre-trained model weights (`.pth` files) are not included due to size constraints. Generate them by running the training script.
+The dataset supporting the conclusions of this article is available in the CycPeptMPDB repository ([DOI: 10.1021/acs.jcim.3c00110](https://doi.org/10.1021/acs.jcim.3c00110)).
+
+- **Project name:** TV-STFN
+- **Project home page:** [https://github.com/Max-0715/TV-STFN](https://github.com/Max-0715/TV-STFN)
+- **Archived version:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20733474.svg)](https://doi.org/10.5281/zenodo.20733474)
+- **Operating system(s):** Platform independent
+- **Programming language:** Python
+- **Other requirements:** RDKit, PyTorch, PyTorch Geometric
+- **License:** MIT
+- **Any restrictions to use by non-academics:** None
 
 ## License
 
-MIT License.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
