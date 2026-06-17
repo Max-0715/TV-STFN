@@ -1,0 +1,15 @@
+torch>=2.0.0
+torch_geometric
+rdkit
+numpy
+pandas
+scipy
+scikit-learn
+tqdm
+matplotlib
+seaborn
+joblib
+xgboost
+lightgbm
+catboost
+openpyxl
