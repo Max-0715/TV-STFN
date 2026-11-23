@@ -9,12 +9,12 @@
 
 TV-STFN is a deep learning framework for predicting the membrane permeability of cyclic peptides. It employs a **Tetra-View** multi-modal architecture with four parallel encoder branches:
 
-1. **Dynamic Conformer Encoder** — SchNet-inspired 3D spatial encoding of molecular conformations
-2. **Semantic Encoder** — Sequence-based representation learning
+1. **Static Conformer Encoder** — SchNet-inspired 3D spatial encoding of a static conformer ensemble (RDKit ETKDGv3, up to 10 candidate conformers per peptide)
+2. **Semantic Encoder** — Representation learning from tokenised SMILES (bundled ChemBERTa tokenizer; no amino-acid sequence input)
 3. **Graph Topology Encoder** — 2D molecular graph structure encoding via GCN/GAT
 4. **Physicochemical Encoder** — Hand-crafted molecular descriptors
 
-The model integrates **Multi-Instance Learning (MIL)** with attention mechanisms to aggregate information across dynamic conformational ensembles, addressing the challenge of conformational flexibility in cyclic peptides.
+The model integrates **Multi-Instance Learning (MIL)** with attention mechanisms to aggregate information across the static conformer ensemble (ETKDGv3), addressing the challenge of conformational flexibility in cyclic peptides.
 
 ## Project Structure
 
@@ -100,5 +100,12 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 - Post-revision audit and analysis code added: strict/scaffold/similarity-isolated split builders, fold-level metric recomputation, leakage and activity-cliff audits, descriptor inventory (217), and reproduction scripts used in the revised manuscript.
 - Analyses from the 2026-09 reviewer follow-up batch (including the without-cliff-loss reruns) are included; smoke/dev-only maskfix runs are excluded as they were not used for any reported number.
-- Companion data archive (tables, splits, fold-level predictions, audit logs) is attached to the v1.1.0 GitHub release and mirrored on Zenodo.
+- Companion data archive (tables, splits, fold-level predictions, audit logs) is staged locally and will be attached to a forthcoming GitHub release and mirrored on Zenodo; it is not public yet.
 - Licence: MIT (unchanged).
+
+## v1.1.1 (2026-11-23)
+
+- README aligned with the manuscript: the 3D branch encodes a **static conformer ensemble** (RDKit ETKDGv3) pooled by MIL attention, and the 1D branch uses **tokenised SMILES**, not amino-acid sequences.
+- Removed internal LLM prompt files (Gemini prompts used to design the SMD negative-control protocol) from the public repository; generative-AI use is disclosed in the manuscript Methods.
+- Corrected the archive-availability wording: the companion data archive is not public until the forthcoming release.
+- No changes to model code, analyses, or reported numbers.
