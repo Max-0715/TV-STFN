@@ -95,3 +95,10 @@ The dataset supporting the conclusions of this article is available in the CycPe
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+## v1.1.0 (2026-11-23)
+
+- Post-revision audit and analysis code added: strict/scaffold/similarity-isolated split builders, fold-level metric recomputation, leakage and activity-cliff audits, descriptor inventory (217), and reproduction scripts used in the revised manuscript.
+- Analyses from the 2026-09 reviewer follow-up batch (including the without-cliff-loss reruns) are included; smoke/dev-only maskfix runs are excluded as they were not used for any reported number.
+- Companion data archive (tables, splits, fold-level predictions, audit logs) is attached to the v1.1.0 GitHub release and mirrored on Zenodo.
+- Licence: MIT (unchanged).
